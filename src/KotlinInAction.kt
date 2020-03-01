@@ -132,14 +132,17 @@ interface Expr
 class Num(val value: Int) : Expr
 class Sum(val left: Expr, val right: Expr) : Expr
 
-fun eval(e: Expr): Int = if (e is Num) {
-    // as 키워드로 명시적 타입 캐스트 가능
-    // val n = e as Num
-    // return n.value
-    e.value
-} else if (e is Sum) {
-    // is 키워드로 타입 검사 후 스마트 캐스트 적용됨
-    eval(e.left) + eval(e.right)
-} else {
-    throw IllegalArgumentException("Unknown expression")
+// is 키워드는 타입 검사 & 스마트 캐스트, as 키워드는 명시적 타입 캐스트
+fun eval(e: Expr): Int = when (e) {
+    is Num -> {
+        println("num: ${e.value}")
+        e.value
+    }
+    is Sum -> {
+        val left = eval(e.left)
+        val right = eval(e.right)
+        println("sum: $left + $right")
+        left + right
+    }
+    else -> throw IllegalArgumentException("Unknown expression")
 }
