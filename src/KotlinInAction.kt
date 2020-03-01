@@ -134,11 +134,12 @@ class Sum(val left: Expr, val right: Expr) : Expr
 
 fun eval(e: Expr): Int {
     if (e is Num) {
-        // as 키워드로 명시적 타입 캐스팅 가능
+        // as 키워드로 명시적 타입 캐스트 가능
         val n = e as Num
         return n.value
     }
 
+    // is 키워드로 타입 검사 후 스마트 캐스트 적용됨
     if (e is Sum) {
         return eval(e.left) + eval(e.right)
     }
