@@ -56,6 +56,8 @@ fun main(args: Array<String>) {
     println(getWarmth(Color.ORANGE))
     println(mix(BLUE, YELLOW))
     println(mixOptimized(BLUE, YELLOW))
+
+    println(eval(Sum(Sum(Num(1), Num(2)), Num(4))))
 }
 
 // 기본적인 함수를 선언하는 방법
@@ -124,4 +126,22 @@ fun mixOptimized(c1: Color, c2: Color) = when {
     (c1 == YELLOW && c2 == BLUE) || (c1 == BLUE && c2 == YELLOW) -> GREEN
     (c1 == BLUE && c2 == VIOLET) || (c1 == VIOLET && c2 == BLUE) -> INDIGO
     else -> throw Exception("Dirty color")
+}
+
+interface Expr
+class Num(val value: Int) : Expr
+class Sum(val left: Expr, val right: Expr) : Expr
+
+fun eval(e: Expr): Int {
+    if (e is Num) {
+        // as 키워드로 명시적 타입 캐스팅 가능
+        val n = e as Num
+        return n.value
+    }
+
+    if (e is Sum) {
+        return eval(e.left) + eval(e.right)
+    }
+
+    throw IllegalArgumentException("Unknown expression")
 }
