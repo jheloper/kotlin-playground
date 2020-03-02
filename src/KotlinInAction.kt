@@ -58,6 +58,21 @@ fun main(args: Array<String>) {
     println(mixOptimized(BLUE, YELLOW))
 
     println(eval(Sum(Sum(Num(1), Num(2)), Num(4))))
+
+    println("FizzBuzz game 1 to 100")
+    for (i in 1..100) {
+        print(fizzBuzz(i))
+    }
+
+    println("\nFizzBuzz game 100 to 1 only even")
+    for (i in 100 downTo 1 step 2) {
+        print(fizzBuzz(i))
+    }
+
+    println("\nFizzBuzz game 1 to 99")
+    for (i in 1 until 100) {
+        print(fizzBuzz(i))
+    }
 }
 
 // 기본적인 함수를 선언하는 방법
@@ -145,4 +160,11 @@ fun eval(e: Expr): Int = when (e) {
         left + right
     }
     else -> throw IllegalArgumentException("Unknown expression")
+}
+
+fun fizzBuzz(i: Int) = when {
+    i % 15 == 0 -> "FizzBuzz "
+    i % 3 == 0 -> "Fizz "
+    i % 5 == 0 -> "Buzz "
+    else -> "$i "
 }
