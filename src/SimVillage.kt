@@ -51,11 +51,15 @@ fun main(args: Array<String>) {
     }
     println(greetingFunction5("Jane", 5))
 
-    runSimulation("Kim", greetingFunction5)
+    runSimulation("Kim",
+        ::printConstructionCost, // 함수 참조를 인자로 넘길 수 있다.
+        greetingFunction5)
 
     // 단축 문법으로 아래와 같이 람다를 전달할 수 있다.
     // 이 방법은 람다가 마지막 인자로 함수에 전달될 때만 가능.
-    runSimulation("Lee") { playerName: String, numBuildings: Int ->
+    runSimulation("Lee",
+        ::printConstructionCost // 함수 참조를 인자로 넘길 수 있다.
+        ) { playerName: String, numBuildings: Int ->
         val currentYear = 2020
         println("$numBuildings buildings added")
         "Welcome to SimVillage, $playerName! (copyright $currentYear)"
@@ -63,7 +67,16 @@ fun main(args: Array<String>) {
 }
 
 // 함수를 인자로 받는 함수.
-fun runSimulation(playerName: String, greetingFunction: (String, Int) -> String) {
+// inline 키워드를 사용하면 람다가 객체로 전달되지 않고 람다의 코드가 복사되어 삽입된다.
+inline fun runSimulation(playerName: String,
+                         costPrinter: (Int) -> Unit, // 함수 참조를 인자로 받도록 추가.
+                         greetingFunction: (String, Int) -> String) {
     val numBuildings = (1..3).shuffled().last()
+    costPrinter(numBuildings)
     println(greetingFunction(playerName, numBuildings))
+}
+
+fun printConstructionCost(numBuildings: Int) {
+    val cost = 500
+    println("building cost: ${cost * numBuildings}")
 }
