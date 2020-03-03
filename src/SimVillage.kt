@@ -52,6 +52,14 @@ fun main(args: Array<String>) {
     println(greetingFunction5("Jane", 5))
 
     runSimulation("Kim", greetingFunction5)
+
+    // 단축 문법으로 아래와 같이 람다를 전달할 수 있다.
+    // 이 방법은 람다가 마지막 인자로 함수에 전달될 때만 가능.
+    runSimulation("Lee") { playerName: String, numBuildings: Int ->
+        val currentYear = 2020
+        println("$numBuildings buildings added")
+        "Welcome to SimVillage, $playerName! (copyright $currentYear)"
+    }
 }
 
 // 함수를 인자로 받는 함수.
