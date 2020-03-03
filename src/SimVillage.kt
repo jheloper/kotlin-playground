@@ -50,4 +50,12 @@ fun main(args: Array<String>) {
         "Welcome to SimVillage, $playerName! (copyright $currentYear)"
     }
     println(greetingFunction5("Jane", 5))
+
+    runSimulation("Kim", greetingFunction5)
+}
+
+// 함수를 인자로 받는 함수.
+fun runSimulation(playerName: String, greetingFunction: (String, Int) -> String) {
+    val numBuildings = (1..3).shuffled().last()
+    println(greetingFunction(playerName, numBuildings))
 }
