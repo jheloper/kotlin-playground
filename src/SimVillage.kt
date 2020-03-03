@@ -42,4 +42,12 @@ fun main(args: Array<String>) {
         "Welcome to SimVillage, $playerName! (copyright $currentYear)"
     }
     println(greetingFunction4("John", 3))
+
+    // 함수 타입도 타입 추론이 가능하므로 아래와 같이 선언할 수 있다.
+    val greetingFunction5 = { playerName: String, numBuildings: Int ->
+        val currentYear = 2020
+        println("$numBuildings buildings added")
+        "Welcome to SimVillage, $playerName! (copyright $currentYear)"
+    }
+    println(greetingFunction5("Jane", 5))
 }
