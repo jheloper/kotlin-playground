@@ -64,6 +64,8 @@ fun main(args: Array<String>) {
         println("$numBuildings buildings added")
         "Welcome to SimVillage, $playerName! (copyright $currentYear)"
     }
+
+    runSimulation2()
 }
 
 // 함수를 인자로 받는 함수.
@@ -79,4 +81,23 @@ inline fun runSimulation(playerName: String,
 fun printConstructionCost(numBuildings: Int) {
     val cost = 500
     println("building cost: ${cost * numBuildings}")
+}
+
+fun runSimulation2() {
+    val greetingFunction = configureGreetingFunction()
+    println(greetingFunction("Celine"))
+}
+
+// 함수를 반환하는 함수 선언
+fun configureGreetingFunction(): (String) -> String {
+    val structureType = "Hospital"
+    var numBuildings = 5
+    // 코틀린의 람다는 클로저이기 때문에 아래처럼 외부 함수에 선언된 매개변수 및 변수를 사용할 수 있다.
+    return {
+        playerName: String ->
+        val currentYear = 2020
+        numBuildings += 1
+        println("$structureType types $numBuildings buildings added")
+        "Welcome to SimVillage, $playerName! (copyright $currentYear)"
+    }
 }
