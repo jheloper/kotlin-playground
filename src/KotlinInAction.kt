@@ -2,6 +2,7 @@
  * @author joonghyeon.kim
  */
 import Color.*
+import java.util.*
 
 fun main(args: Array<String>) {
     println("Hello, world!")
@@ -72,6 +73,25 @@ fun main(args: Array<String>) {
     println("\nFizzBuzz game 1 to 99")
     for (i in 1 until 100) {
         print(fizzBuzz(i))
+    }
+    println("FizzBuzz Complete")
+
+    // 맵에 대한 이터레이션.
+    val binaryReps = TreeMap<Char, String>()
+
+    for (c in 'A'..'F') {
+        val binary = Integer.toBinaryString(c.toInt())
+        binaryReps[c] = binary
+    }
+
+    for ((letter, binary) in binaryReps) {
+        println("$letter = $binary")
+    }
+
+    // 컬렉션을 인덱스와 함께 이터레이션.
+    val list = arrayListOf("10", "11", "1001")
+    for ((index, element) in list.withIndex()) {
+        println("$index: $element")
     }
 }
 
