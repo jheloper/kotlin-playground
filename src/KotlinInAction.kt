@@ -93,6 +93,9 @@ fun main(args: Array<String>) {
     for ((index, element) in list.withIndex()) {
         println("$index: $element")
     }
+
+    println(isLetter('q'))
+    println(isNotDigit('x'))
 }
 
 // 기본적인 함수를 선언하는 방법
@@ -188,3 +191,7 @@ fun fizzBuzz(i: Int) = when {
     i % 5 == 0 -> "Buzz "
     else -> "$i "
 }
+
+fun isLetter(c: Char) = c in 'a'..'z' || c in 'A'..'Z'
+
+fun isNotDigit(c: Char) = c !in '0'..'9'
