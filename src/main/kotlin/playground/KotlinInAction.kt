@@ -1,7 +1,9 @@
+package playground
+
 /**
  * @author joonghyeon.kim
  */
-import Color.*
+import playground.Color.*
 import java.util.*
 
 fun main(args: Array<String>) {
@@ -53,12 +55,21 @@ fun main(args: Array<String>) {
     println(rectangle2.isSquare)
 
     println(Color.BLUE.rgb())
-    println(genMnemonic(Color.BLUE))
-    println(getWarmth(Color.ORANGE))
+    println(genMnemonic(BLUE))
+    println(getWarmth(ORANGE))
     println(mix(BLUE, YELLOW))
     println(mixOptimized(BLUE, YELLOW))
 
-    println(eval(Sum(Sum(Num(1), Num(2)), Num(4))))
+    println(
+        eval(
+            Sum(
+                Sum(
+                    Num(1),
+                    Num(2)
+                ), Num(4)
+            )
+        )
+    )
 
     println("FizzBuzz game 1 to 100")
     for (i in 1..100) {
@@ -175,7 +186,8 @@ fun mixOptimized(c1: Color, c2: Color) = when {
 
 interface Expr
 class Num(val value: Int) : Expr
-class Sum(val left: Expr, val right: Expr) : Expr
+class Sum(val left: Expr, val right: Expr) :
+    Expr
 
 // is 키워드는 타입 검사 & 스마트 캐스트, as 키워드는 명시적 타입 캐스트
 fun eval(e: Expr): Int = when (e) {
