@@ -1,14 +1,54 @@
+package playground
+
 /**
  * @author joonghyeon.kim
  */
 
-fun main(args: Array<String>) {
+fun callSimVillage() {
+
+    greetingSimVillage()
+
+    greetingSimVillageAssignedVariable()
+
+    greetingSimVillageWithParameter()
+
+    greetingSimVillageWithItKeyword()
+
+    greetingSimVillageWithParameters()
+
+    greetingSimVillageWithTypeInference()
+
+    val greetingFunction = greetingSimVillageWithTypeInference()
+
+    runSimulation(
+        "Kim",
+        ::printConstructionCost, // 함수 참조를 인자로 넘길 수 있다.
+        greetingFunction
+    )
+
+    // 단축 문법으로 아래와 같이 람다를 전달할 수 있다.
+    // 이 방법은 람다가 마지막 인자로 함수에 전달될 때만 가능.
+    runSimulation(
+        "Lee",
+        ::printConstructionCost // 함수 참조를 인자로 넘길 수 있다.
+    ) { playerName: String, numBuildings: Int ->
+        val currentYear = 2020
+        println("$numBuildings buildings added")
+        "Welcome to SimVillage, $playerName! (copyright $currentYear)"
+    }
+
+    runSimulation2()
+}
+
+fun greetingSimVillage() {
     // 익명 함수를 선언하고 호출.
     println({
         val currentYear = 2020
         "Welcome to SimVillage, chief! (copyright $currentYear)"
     }())
+}
 
+fun greetingSimVillageAssignedVariable() {
     // 익명 함수를 변수에 지정.
     val greetingFunction: () -> String = {
         // 익명 함수는 암시적 반환이기 때문에 return 키워드를 생략한다.
@@ -17,55 +57,48 @@ fun main(args: Array<String>) {
     }
     println("greetingFunction variable type is '$greetingFunction'")
     println(greetingFunction())
+}
 
+fun greetingSimVillageWithParameter() {
     // 인자 있는 익명 함수.
-    val greetingFunction2: (String) -> String = {
-        playerName ->
+    val greetingFunction: (String) -> String = {
+            playerName ->
         val currentYear = 2020
         "Welcome to SimVillage, $playerName! (copyright $currentYear)"
     }
-    println(greetingFunction2("Tommy"))
+    println(greetingFunction("Tommy"))
+}
 
+fun greetingSimVillageWithItKeyword() {
     // it 키워드로 인자를 받는 익명 함수.
     // it 키워드는 하나의 인자를 받을 때에만 사용할 수 있다.
-    val greetingFunction3: (String) -> String = {
+    val greetingFunction: (String) -> String = {
         val currentYear = 2020
         "Welcome to SimVillage, $it! (copyright $currentYear)"
     }
-    println(greetingFunction3("Helen"))
+    println(greetingFunction("Helen"))
+}
 
+fun greetingSimVillageWithParameters() {
     // 여러 인자를 받는 익명 함수.
-    val greetingFunction4: (String, Int) -> String = {
-        playerName, numBuildings ->
+    val greetingFunction: (String, Int) -> String = {
+            playerName, numBuildings ->
         val currentYear = 2020
         println("$numBuildings buildings added")
         "Welcome to SimVillage, $playerName! (copyright $currentYear)"
     }
-    println(greetingFunction4("John", 3))
+    println(greetingFunction("John", 3))
+}
 
+fun greetingSimVillageWithTypeInference(): (String, Int) -> String {
     // 함수 타입도 타입 추론이 가능하므로 아래와 같이 선언할 수 있다.
-    val greetingFunction5 = { playerName: String, numBuildings: Int ->
-        val currentYear = 2020
-        println("$numBuildings buildings added")
-        "Welcome to SimVillage, $playerName! (copyright $currentYear)"
-    }
-    println(greetingFunction5("Jane", 5))
-
-    runSimulation("Kim",
-        ::printConstructionCost, // 함수 참조를 인자로 넘길 수 있다.
-        greetingFunction5)
-
-    // 단축 문법으로 아래와 같이 람다를 전달할 수 있다.
-    // 이 방법은 람다가 마지막 인자로 함수에 전달될 때만 가능.
-    runSimulation("Lee",
-        ::printConstructionCost // 함수 참조를 인자로 넘길 수 있다.
-        ) { playerName: String, numBuildings: Int ->
+    val greetingFunction = { playerName: String, numBuildings: Int ->
         val currentYear = 2020
         println("$numBuildings buildings added")
         "Welcome to SimVillage, $playerName! (copyright $currentYear)"
     }
 
-    runSimulation2()
+    return greetingFunction
 }
 
 // 함수를 인자로 받는 함수.
@@ -85,6 +118,7 @@ fun printConstructionCost(numBuildings: Int) {
 
 fun runSimulation2() {
     val greetingFunction = configureGreetingFunction()
+    println(greetingFunction("Celine"))
     println(greetingFunction("Celine"))
 }
 
