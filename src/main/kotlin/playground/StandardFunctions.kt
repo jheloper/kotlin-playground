@@ -13,7 +13,7 @@ fun createFileByApplyFunction(): File {
     // menuFile.setExecutable(false)
 
     val menuFile = File("menu-file.txt").apply {
-        mkdirs()
+        createNewFile()
         setReadable(true, false)
         setWritable(true, false)
         setExecutable(false, false)
@@ -32,3 +32,20 @@ fun getFirstItemSquaredByLetFunction(): Int {
 
     return firstItemSquared
 }
+
+fun formatGreeting(vipGuest: String?): String {
+    return vipGuest?.let {
+        "Welcome, $it. your table is already ready."
+    } ?: "Welcome, I will ready table soon."
+}
+
+fun isContainToFile(sentence: String): Boolean {
+    val menuFile = File("menu-file.txt")
+    val servesDragonsBreath = menuFile.run {
+        readText().contains(sentence)
+    }
+
+    return servesDragonsBreath
+}
+
+fun nameIsLong(name: String) = name.length >= 20

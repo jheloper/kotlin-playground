@@ -23,4 +23,20 @@ class StandardFunctionsTest {
         val firstItemSquared = getFirstItemSquaredByLetFunction()
         assertEquals(9, firstItemSquared)
     }
+
+    @Test
+    fun testFormatGreeting() {
+        println(formatGreeting("Nathan"))
+    }
+
+    @Test
+    fun testIsContainToFile() {
+        assertFalse(isContainToFile("Dragon's Breath"))
+    }
+
+    @Test
+    fun testNameIsLong() {
+        assertFalse("Madrigal".run(::nameIsLong))
+        assertTrue("Polarcubis, Supreme Master of NyetHack".run(::nameIsLong))
+    }
 }
