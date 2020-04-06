@@ -49,3 +49,11 @@ fun isContainToFile(sentence: String): Boolean {
 }
 
 fun nameIsLong(name: String) = name.length >= 20
+
+fun playerCreateMessage(nameTooLong: Boolean): String {
+    return if (nameTooLong) {
+        "Name is too long. Please choose another name."
+    } else {
+        "Welcome, adventurer."
+    }
+}

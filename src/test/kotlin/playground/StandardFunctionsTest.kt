@@ -39,4 +39,12 @@ class StandardFunctionsTest {
         assertFalse("Madrigal".run(::nameIsLong))
         assertTrue("Polarcubis, Supreme Master of NyetHack".run(::nameIsLong))
     }
+
+    @Test
+    fun testNameIsLongAndPlayerCreateMessage() {
+        "Polarcubis, Supreme Master of NyetHack"
+            .run(::nameIsLong)
+            .run(::playerCreateMessage)
+            .run(::println)
+    }
 }
