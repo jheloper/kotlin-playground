@@ -10,6 +10,7 @@ import kotlin.test.assertTrue
  */
 
 class StandardFunctionsTest {
+
     @Test
     fun testCreateFileByApplyFunction() {
         val file = createFileByApplyFunction()
@@ -47,4 +48,12 @@ class StandardFunctionsTest {
             .run(::playerCreateMessage)
             .run(::println)
     }
+
+    @Test
+    fun testGetFileContents() {
+        val fileContents = getFileContents()
+        println(fileContents.toString())
+    }
+
+
 }

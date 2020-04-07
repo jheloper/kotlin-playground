@@ -57,3 +57,14 @@ fun playerCreateMessage(nameTooLong: Boolean): String {
         "Welcome, adventurer."
     }
 }
+
+fun getFileContents(): List<String> {
+    var fileContents: List<String>
+    File("file.txt")
+        .also {
+            println(it.name)
+        }.also {
+            fileContents = it.readLines()
+        }
+    return fileContents
+}
