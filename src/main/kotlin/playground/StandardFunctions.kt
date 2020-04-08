@@ -68,3 +68,21 @@ fun getFileContents(): List<String> {
         }
     return fileContents
 }
+
+fun getFileContentsTakeIf(): String? {
+    val file = File("myfile.txt").apply {
+        createNewFile()
+        setReadable(true)
+        setWritable(true)
+    }
+    return file.takeIf { it.canRead() && it.canWrite() }?.readText()
+}
+
+fun getFileContentsTakeUnless(): String? {
+    val file = File("myfile.txt").apply {
+        createNewFile()
+        setReadable(true)
+        setWritable(true)
+    }
+    return file.takeUnless { it.isHidden }?.readText()
+}

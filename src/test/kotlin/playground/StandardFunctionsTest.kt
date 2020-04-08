@@ -3,6 +3,7 @@ package playground
 import org.junit.jupiter.api.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 
 /**
@@ -55,5 +56,15 @@ class StandardFunctionsTest {
         println(fileContents.toString())
     }
 
+    @Test
+    fun testGetFileContentsTakeIf() {
+        val fileContents = getFileContentsTakeIf()
+        assertNotNull(fileContents)
+    }
 
+    @Test
+    fun testGetFileContentsTakeUnless() {
+        val fileContents = getFileContentsTakeUnless()
+        assertNotNull(fileContents)
+    }
 }
