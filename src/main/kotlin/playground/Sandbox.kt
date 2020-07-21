@@ -1,9 +1,5 @@
 package playground
 
-/**
- * @author joonghyeon.kim
- */
-
 fun main(args: Array<String>) {
     println("Run Sandbox!")
 

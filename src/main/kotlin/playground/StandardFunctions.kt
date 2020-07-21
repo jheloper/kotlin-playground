@@ -2,10 +2,6 @@ package playground
 
 import java.io.File
 
-/**
- * @author joonghyeon.kim
- */
-
 fun createFileByApplyFunction(): File {
     // val menuFile = File("menu-file.txt")
     // menuFile.setReadable(true)

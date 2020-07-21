@@ -1,8 +1,5 @@
 package playground
 
-/**
- * @author joonghyeon.kim
- */
 import playground.Color.*
 import java.util.*
 
