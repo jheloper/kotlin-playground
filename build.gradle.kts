@@ -4,18 +4,8 @@
  * This is a general purpose Gradle build.
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds
  */
-buildscript {
-    repositories {
-        mavenCentral()
-    }
-
-    dependencies {
-        classpath(kotlin("gradle-plugin", version = "1.3.70"))
-    }
-}
-
 plugins {
-    kotlin("jvm") version "1.3.70"
+    id("org.jetbrains.kotlin.jvm") version "1.8.0"
     application
 }
 
@@ -23,12 +13,14 @@ repositories {
     mavenCentral()
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_11
+}
+
 dependencies {
-    implementation(kotlin("stdlib"))
-    testImplementation(kotlin("test-junit5", "1.3.70"))
-    testImplementation("org.junit.platform:junit-platform-runner:1.6.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.6.0")
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.6.0")
+    testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.9.1")
 }
 
 tasks.withType<Test> {
